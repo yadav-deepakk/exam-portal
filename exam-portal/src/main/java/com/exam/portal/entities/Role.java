@@ -19,10 +19,9 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int roleId;
 	private String roleName;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "role")
-	@JsonIgnore
-	Set<UserRole> userRoles = new HashSet<>(); 
+	Set<UserRole> userRoles = new HashSet<>();
 
 	public Role() {
 		super();
@@ -53,6 +52,14 @@ public class Role {
 
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
+	}
+
+	public Set<UserRole> getUserRoles() {
+		return userRoles;
+	}
+
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 	@Override

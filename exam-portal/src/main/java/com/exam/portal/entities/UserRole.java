@@ -1,8 +1,5 @@
 package com.exam.portal.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -16,12 +13,10 @@ public class UserRole {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userRoleId;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Role role;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnore
+	@ManyToOne
 	private User user;
 
 	public UserRole() {
