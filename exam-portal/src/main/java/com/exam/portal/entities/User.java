@@ -20,8 +20,8 @@ public class User {
 	private String email;
 	private String firstName;
 	private String lastName;
-	private boolean isActive = true;
-	private int phone;
+	private Boolean isActive = true;
+	private Integer phone;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
 	@JsonIgnore
@@ -31,7 +31,7 @@ public class User {
 		super();
 	}
 
-	public User(String userName, String email, String firstName, String lastName, boolean isActive, int phone) {
+	public User(String userName, String email, String firstName, String lastName, Boolean isActive, Integer phone) {
 		super();
 		this.userName = userName;
 		this.email = email;
@@ -81,19 +81,19 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public boolean isActive() {
+	public Boolean isActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 
-	public int getPhone() {
+	public Integer getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
 

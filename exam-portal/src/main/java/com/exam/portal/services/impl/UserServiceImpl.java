@@ -36,4 +36,42 @@ public class UserServiceImpl implements UserService {
 		return local;
 	}
 
+	@Override
+	public User getUserByUserName(String userName) throws Exception {
+		return this.userRepo.findByUserName(userName);
+	}
+
+	@Override
+	public boolean updateUserInfo(String userName, User user) throws Exception {
+		User localUser = this.userRepo.findByUserName(userName);
+		if (localUser != null) {
+			if (user.getEmail() != null)
+				localUser.setEmail(user.getEmail());
+			if (user.getFirstName() != null)
+				localUser.setFirstName(user.getFirstName());
+			if (user.getLastName() != null)
+				localUser.setLastName(user.getLastName());
+			if (user.getPhone() != null)
+				localUser.setPhone(user.getPhone());
+			if (user.isActive() != null)
+				localUser.setActive(user.isActive());
+			this.userRepo.save(localUser);
+			return true;
+		} else {
+			System.out.println("No user found with this username.");
+			return false;
+		}
+	}
+
+	@Override
+	public void deleteUserById(Long id) throws Exception {
+		User u = this.userRepo.findById(id).get(); 
+		System.out.println(u);
+		if(u!= null) {
+			this.userRepo.deleteById(id);
+		}else {
+			throw new Exception("User does not exist into database.");
+		}
+	}
+
 }
