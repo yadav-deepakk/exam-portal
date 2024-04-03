@@ -1,6 +1,5 @@
 package com.exam.portal;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,18 +25,24 @@ public class ExamPortalApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Creation of an ADMIN User...");
+		try {
+			System.out.println("Creation of an ADMIN User...");
 
-		User u1 = new User("yadav_deepakk", "deepak@yadav.com", "deepak", "yadav", true, 1212120021);
-		Role role1 = new Role("ADMIN");
-		UserRole userRole = new UserRole(role1, u1);
+			User u1 = new User("yadav_deepakk", "deepak@yadav.com", "deepak", "yadav", true, 1212120021);
+			Role role1 = new Role(1, "ADMIN");
+			UserRole userRole = new UserRole(role1, u1);
 
-		Set<UserRole> userRoleSet = new HashSet<>();
-		userRoleSet.add(userRole);
+			Set<UserRole> userRoleSet = new HashSet<>();
+			userRoleSet.add(userRole);
 
-		User user = this.userService.createUser(u1, userRoleSet);
-		System.out.println("Admin User Created: " + user.getUserName());
-		System.out.println("ADMIN User Creation Done...");
+			User user = this.userService.createUser(u1, userRoleSet);
+			System.out.println("Admin User Created: " + user.getUserName());
+			System.out.println("ADMIN User Creation Done...");
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 }

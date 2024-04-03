@@ -16,7 +16,6 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Role {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int roleId;
 	private String roleName;
 
@@ -25,11 +24,6 @@ public class Role {
 
 	public Role() {
 		super();
-	}
-
-	public Role(String roleName) {
-		super();
-		this.roleName = roleName;
 	}
 
 	public Role(int roleId, String roleName) {

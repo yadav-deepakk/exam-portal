@@ -20,7 +20,7 @@ public class User {
 	private String email;
 	private String firstName;
 	private String lastName;
-	private boolean isActive;
+	private boolean isActive = true;
 	private int phone;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
