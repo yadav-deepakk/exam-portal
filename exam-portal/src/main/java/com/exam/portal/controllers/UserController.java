@@ -3,13 +3,12 @@ package com.exam.portal.controllers;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.aspectj.weaver.tools.Trace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,13 +23,14 @@ import com.exam.portal.services.UserService;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
 
 	@Autowired
 	UserService userService;
 
-	@GetMapping("{userName}")
-	public ResponseEntity<User> getUserByUserName(@PathVariable String userName) {
+	@GetMapping
+	public ResponseEntity<User> getUserByUserName(@RequestParam(name = "userName", required = true) String userName) {
 		System.out.println("GET: /user/{username}" + ", username=" + userName);
 		try {
 			User usr = this.userService.getUserByUserName(userName);
@@ -46,7 +46,7 @@ public class UserController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<String> createNormalUser(@RequestBody User user) {
+	public ResponseEntity<User> createNormalUser(@RequestBody User user) {
 		System.out.println("POST: /user/create");
 		System.out.println(user);
 		try {
@@ -54,11 +54,12 @@ public class UserController {
 			Set<UserRole> userRoleSet = new HashSet<>();
 			userRoleSet.add(new UserRole(normalRole, user));
 			this.userService.createUser(user, userRoleSet);
-			return new ResponseEntity<String>("User Insertion Successful", HttpStatus.OK);
+			User insertedUser = this.userService.getUserByUserName(user.getUserName());
+			return new ResponseEntity<>(insertedUser, HttpStatus.OK);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>("Error Occured in Saving User.", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

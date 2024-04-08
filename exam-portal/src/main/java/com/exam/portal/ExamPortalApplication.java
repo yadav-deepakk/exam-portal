@@ -28,7 +28,7 @@ public class ExamPortalApplication implements CommandLineRunner {
 		try {
 			System.out.println("Creation of an ADMIN User...");
 
-			User u1 = new User("yadav_deepakk", "deepak@yadav.com", "deepak", "yadav", true, 1212120021);
+			User u1 = new User("yadav_deepakk", "deepak@yadav.com", "deepak", "yadav", true, "+91 9911223344");
 			Role role1 = new Role(1, "ADMIN");
 			UserRole userRole = new UserRole(role1, u1);
 
