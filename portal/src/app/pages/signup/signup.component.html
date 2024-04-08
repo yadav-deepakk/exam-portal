@@ -15,7 +15,7 @@
         matInput
         name="userName"
         [(ngModel)]="user.userName"
-        placeholder="eg. john_rics"
+        placeholder="eg. john_rics (must be unique)"
       />
     </mat-form-field>
 
@@ -74,10 +74,17 @@
     </mat-form-field>
 
     <div class="button-group text-center">
-      <button type="submit" mat-raised-button color="primary">Sign Up</button>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="waitForRespose"
+      >
+        Sign Up
+      </button>
       <button type="reset" mat-raised-button>Reset</button>
     </div>
 
-    {{ user | json }}
+    <!-- {{ user | json }} -->
   </form>
 </div>

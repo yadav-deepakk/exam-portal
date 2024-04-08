@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SignupComponent implements OnInit {
   public hide = true;
+  public waitForRespose = false;
 
   public user = {
     userName: '',
@@ -18,7 +20,10 @@ export class SignupComponent implements OnInit {
     phone: '',
   };
 
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(
+    private snackBar: MatSnackBar,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -43,5 +48,20 @@ export class SignupComponent implements OnInit {
     }
     console.log('submitting sign up details...');
     console.log(this.user);
+
+    // show loader and disable button to prevent resend.
+    this.waitForRespose = !this.waitForRespose;
+    this.userService.createUser(this.user).subscribe(
+      (data) => {
+        console.log(data);
+        this.snackBar.open('User creation has been done successfully.', 'OK');
+      },
+      (error) => {
+        console.log(error);
+        this.snackBar.open('Some error occured.', 'Cancel');
+      }
+    );
+    // hide loader and enable button.
+    this.waitForRespose = !this.waitForRespose;
   }
 }
