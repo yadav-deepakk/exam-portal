@@ -31,7 +31,7 @@ public class UserController {
 
 	@GetMapping
 	public ResponseEntity<User> getUserByUserName(@RequestParam(name = "userName", required = true) String userName) {
-		System.out.println("GET: /user/{username}" + ", username=" + userName);
+		System.out.println("GET: /user?" + ", userName=" + userName);
 		try {
 			User usr = this.userService.getUserByUserName(userName);
 			if (usr != null) {
