@@ -1,90 +1,64 @@
-<div class="form-container text-center">
-  <img
-    src="../../../assets/images/signup.png"
-    alt="signup"
-    width="480"
-    height="220"
-  />
+<div class="mt-10 mb-20">
+    <mat-card class="form-container text-center">
+        <mat-card-content>
+            <img src="../../../assets/images/signup.png" alt="signup" width="480" height="220" />
 
-  <h2 class="text-center">SIGN UP</h2>
+            <h2 class="text-center">SIGN UP</h2>
 
-  <form (ngSubmit)="onSignUpSubmit()">
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>User Name</mat-label>
-      <input
-        matInput
-        name="userName"
-        [(ngModel)]="user.userName"
-        placeholder="eg. john_rics (must be unique)"
-      />
-    </mat-form-field>
+            <form (ngSubmit)="onSignUpSubmit()">
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>User Name</mat-label>
+                    <input
+                        required
+                        matInput
+                        name="userName"
+                        [(ngModel)]="user.userName"
+                        placeholder="eg. john_rics (must be unique)"
+                    />
+                </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Password</mat-label>
-      <input
-        matInput
-        name="password"
-        [(ngModel)]="user.password"
-        [type]="hide ? 'password' : 'text'"
-        placeholder="Enter your password"
-      />
-      <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
-        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-      </button>
-    </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input
+                        required
+                        matInput
+                        name="password"
+                        [(ngModel)]="user.password"
+                        [type]="hide ? 'password' : 'text'"
+                        placeholder="Enter your password"
+                    />
+                    <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+                        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+                    </button>
+                </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>First Name</mat-label>
-      <input
-        matInput
-        name="firstName"
-        [(ngModel)]="user.firstName"
-        placeholder="eg. John"
-      />
-    </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input required matInput name="firstName" [(ngModel)]="user.firstName" placeholder="eg. John" />
+                </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Last Name</mat-label>
-      <input
-        matInput
-        name="lastName"
-        [(ngModel)]="user.lastName"
-        placeholder="eg. Richards"
-      />
-    </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input required matInput name="lastName" [(ngModel)]="user.lastName" placeholder="eg. Richards" />
+                </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Email</mat-label>
-      <input
-        matInput
-        name="email"
-        [(ngModel)]="user.email"
-        placeholder="eg. rich@gmail.com"
-      />
-    </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input required matInput name="email" [(ngModel)]="user.email" placeholder="eg. rich@gmail.com" />
+                </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Phone No</mat-label>
-      <input
-        matInput
-        name="phone"
-        [(ngModel)]="user.phone"
-        placeholder="eg. 9990001210"
-      />
-    </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Phone No</mat-label>
+                    <input required matInput name="phone" [(ngModel)]="user.phone" placeholder="eg. 9990001210" />
+                </mat-form-field>
 
-    <div class="button-group text-center">
-      <button
-        type="submit"
-        mat-raised-button
-        color="primary"
-        [disabled]="waitForRespose"
-      >
-        Sign Up
-      </button>
-      <button type="reset" mat-raised-button>Reset</button>
-    </div>
+                <div class="button-group text-center">
+                    <button type="submit" mat-raised-button color="primary">Sign Up</button>
+                    <button type="reset" mat-raised-button>Reset</button>
+                </div>
 
-    <!-- {{ user | json }} -->
-  </form>
+                <!-- {{ user | json }} -->
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>

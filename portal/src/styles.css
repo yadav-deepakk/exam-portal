@@ -9,7 +9,49 @@ body {
     margin: 0;
     padding-top: 0;
     font-family: Helvetica, "Helvetica Neue", sans-serif;
-    background-color: #e8e8e8;
+    background-color: #EDE7F6;
+}
+
+.flex-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-dir-col {
+    flex-direction: column;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
 }
 
 .text-center {
@@ -21,7 +63,6 @@ body {
     padding-bottom: 18px;
     width: 50vw;
     height: fit-content;
-    background-color: #f3f3f3;
 
     display: flex;
     align-items: center;
