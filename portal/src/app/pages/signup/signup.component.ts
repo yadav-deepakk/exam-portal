@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import User from "src/app/models/user";
 import { UserService } from "src/app/services/user.service";
 import Swal from "sweetalert2";
 
@@ -11,7 +12,7 @@ import Swal from "sweetalert2";
 export class SignupComponent implements OnInit {
     public hide = true;
 
-    public user = {
+    public user: User = {
         userName: "",
         password: "",
         firstName: "",
