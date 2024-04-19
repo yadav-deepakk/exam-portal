@@ -50,6 +50,7 @@ public class UserController {
 		System.out.println("POST: /user/create");
 		System.out.println(user);
 		try {
+			user.setProfile("default.png"); 
 			Role normalRole = new Role(2, "NORMAL");
 			Set<UserRole> userRoleSet = new HashSet<>();
 			userRoleSet.add(new UserRole(normalRole, user));
