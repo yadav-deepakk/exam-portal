@@ -6,8 +6,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserRole {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,44 +28,5 @@ public class UserRole {
 
 	@ManyToOne
 	private User user;
-
-	public UserRole() {
-		super();
-	}
-
-	public UserRole(Role role, User user) {
-		super();
-		this.role = role;
-		this.user = user;
-	}
-
-	public Long getUserRoleId() {
-		return userRoleId;
-	}
-
-	public void setUserRoleId(Long userRoleId) {
-		this.userRoleId = userRoleId;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@Override
-	public String toString() {
-		return "UserRole [userRoleId=" + userRoleId + ", role=" + role + ", user=" + user + "]";
-	}
 
 }
