@@ -7,16 +7,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@SuppressWarnings("serial")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Authority implements GrantedAuthority {
-	private String authorityName;
+	private String authority;
 
 	@Override
 	public String getAuthority() {
-		return authorityName;
+		return authority;
 	}
 }

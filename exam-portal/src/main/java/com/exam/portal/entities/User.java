@@ -2,6 +2,9 @@ package com.exam.portal.entities;
 
 import com.exam.portal.models.Authority;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import io.micrometer.common.lang.Nullable;
+
 import java.util.*;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -32,7 +35,7 @@ public class User implements UserDetails {
 	private Long userId;
 	private String firstName;
 	private String lastName;
-	private String userName;
+	private String username;
 	private String email;
 	private String password;
 	private String profile;
@@ -51,13 +54,23 @@ public class User implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<Authority> authoritySet = new HashSet<>();
 		for (UserRole userRole : userRoles)
-			authoritySet.add(Authority.builder().authorityName(userRole.getRole().getRoleName()).build());
+			authoritySet.add(Authority.builder().authority(userRole.getRole().getRoleName()).build());
 		return authoritySet;
 	}
 
 	@Override
 	public String getUsername() {
-		return userName;
+		return username;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return isActive;
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
 	}
 
 	@Override
@@ -73,11 +86,6 @@ public class User implements UserDetails {
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return isActive;
 	}
 
 }

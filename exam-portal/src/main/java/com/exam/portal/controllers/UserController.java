@@ -34,14 +34,14 @@ public class UserController {
 	Logger log = LoggerFactory.getLogger(UserController.class);
 
 	@GetMapping
-	public ResponseEntity<User> getUserByUserName(@RequestParam(name = "userName", required = true) String userName) {
-		log.info("GET: /user?" + ", userName=" + userName);
+	public ResponseEntity<User> getUserByUsername(@RequestParam(name = "username", required = true) String username) {
+		log.info("GET: /user?" + ", username=" + username);
 		try {
-			User usr = userService.getUserByUserName(userName);
+			User usr = userService.getUserByUsername(username);
 			if (usr != null) {
 				return new ResponseEntity<>(usr, HttpStatus.OK);
 			} else
-				throw new Exception("No user found with given userName=" + userName);
+				throw new Exception("No user found with given username=" + username);
 		} catch (Exception e) {
 			log.info("Exception Occured: {}", e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -67,13 +67,13 @@ public class UserController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<String> updateNormalUser(@RequestParam(name = "userName", required = true) String userName,
+	public ResponseEntity<String> updateNormalUser(@RequestParam(name = "username", required = true) String username,
 			@RequestBody User user) {
 		log.info("PUT: /user/update");
-		log.info("userName=" + userName);
+		log.info("username=" + username);
 		log.info("user: {}", user);
 		try {
-			boolean updateSuccess = userService.updateUserInfo(userName, user);
+			boolean updateSuccess = userService.updateUserInfo(username, user);
 			if (updateSuccess) {
 				return new ResponseEntity<String>("User updation successful.", HttpStatus.OK);
 			} else {

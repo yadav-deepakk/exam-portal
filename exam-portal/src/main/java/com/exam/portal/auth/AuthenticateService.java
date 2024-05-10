@@ -35,10 +35,10 @@ public class AuthenticateService {
 	private AuthenticationManager authManager;
 
 	@Autowired
-	JwtUtilService jwtService;
+	private JwtUtilService jwtService;
 
 	public JwtResponse signUp(SignUpRequest req) {
-		User user = User.builder().firstName(req.getFirstName()).lastName(req.getLastName()).userName(req.getUserName())
+		User user = User.builder().firstName(req.getFirstName()).lastName(req.getLastName()).username(req.getUsername())
 				.email(req.getEmail()).phone(req.getPhone()).password(passwordEncoder.encode(req.getPassword()))
 				.build();
 
@@ -47,17 +47,24 @@ public class AuthenticateService {
 		Set<UserRole> userRoleSet = new HashSet<>();
 		userRoleSet.add(UserRole.builder().user(user).role(normalRole).build());
 
-		userService.createUser(user, userRoleSet);
+		User localUser = userService.createUser(user, userRoleSet);
+		if (localUser != null) {
+			final String jwtToken = jwtService.generateToken(localUser);
+			return JwtResponse.builder().username(localUser.getUsername()).jwt(jwtToken).build();
+		}
 
-		final String jwtToken = jwtService.generateToken(user);
-		return JwtResponse.builder().username(req.getUserName()).jwt(jwtToken).build();
+		return null;
 	}
 
 	public JwtResponse signIn(SignInRequest req) {
-		authManager.authenticate(new UsernamePasswordAuthenticationToken(req.getUserName(), req.getPassword()));
-		User user = repository.findByUserName(req.getUserName()).orElseThrow();
-		final String jwtToken = jwtService.generateToken(user);
+		authManager.authenticate(new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword()));
+		User localUser = repository.findByUsername(req.getUsername()).orElseThrow();
 
-		return JwtResponse.builder().username(req.getUserName()).jwt(jwtToken).build();
+		if (localUser != null) {
+			final String jwtToken = jwtService.generateToken(localUser);
+			return JwtResponse.builder().username(localUser.getUsername()).jwt(jwtToken).build();
+		}
+
+		return null;
 	}
 }

@@ -34,10 +34,9 @@ public class ExamPortalApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		try {
-
 			log.info("Creation of an ADMIN User ...");
 
-			User u1 = User.builder().firstName("deepak").lastName("yadav").userName("yadav_deepakk")
+			User u1 = User.builder().firstName("deepak").lastName("yadav").username("yadav_deepakk")
 					.email("deepak@yadav.com").phone("+91 9911223344").password(passwordEncoder.encode("D999"))
 					.profile("default.png").isActive(true).build();
 			Role role1 = Role.builder().roleId(1).roleName("ADMIN").build(); // new Role(1, "ADMIN");
@@ -46,9 +45,9 @@ public class ExamPortalApplication implements CommandLineRunner {
 			Set<UserRole> userRoleSet = new HashSet<>();
 			userRoleSet.add(userRole);
 
-			User user = this.userService.createUser(u1, userRoleSet);
+			userService.createUser(u1, userRoleSet);
 
-			log.info("ADMIN User: {} Creation Done....", user.getUsername());
+			log.info("ADMIN User Creation Done ...");
 
 		} catch (Exception e) {
 			log.info(e.getMessage());

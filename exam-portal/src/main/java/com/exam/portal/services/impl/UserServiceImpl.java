@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User createUser(User user, Set<UserRole> userRoles) {
-		Optional<User> local = userRepo.findByUserName(user.getUsername());
+		Optional<User> local = userRepo.findByUsername(user.getUsername());
 		if (local.isEmpty()) {
 			for (UserRole ur : userRoles) {
 				roleRepo.save(ur.getRole());
@@ -42,13 +42,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserByUserName(String userName) {
-		return userRepo.findByUserName(userName).get();
+	public User getUserByUsername(String userName) {
+		return userRepo.findByUsername(userName).get();
 	}
 
 	@Override
 	public boolean updateUserInfo(String userName, User user) {
-		Optional<User> local = userRepo.findByUserName(user.getUsername());
+		Optional<User> local = userRepo.findByUsername(user.getUsername());
 
 		if (!local.isEmpty()) {
 			User localUser = local.get();
