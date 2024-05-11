@@ -13,7 +13,7 @@ import com.exam.portal.entities.Role;
 import com.exam.portal.entities.User;
 import com.exam.portal.entities.UserRole;
 import com.exam.portal.models.JwtResponse;
-import com.exam.portal.models.SignInRequest;
+import com.exam.portal.models.LogInRequest;
 import com.exam.portal.models.SignUpRequest;
 import com.exam.portal.repositories.UserRepo;
 import com.exam.portal.security.JwtUtilService;
@@ -56,7 +56,7 @@ public class AuthenticateService {
 		return null;
 	}
 
-	public JwtResponse signIn(SignInRequest req) {
+	public JwtResponse logIn(LogInRequest req) {
 		authManager.authenticate(new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword()));
 		User localUser = repository.findByUsername(req.getUsername()).orElseThrow();
 
