@@ -1,36 +1,44 @@
-<div class="mt-20">
+<div class="mt-10">
     <mat-card class="form-container text-center">
         <mat-card-content>
-            <img src="../../../assets/images/login.png" alt="signup" width="450" height="350" />
+            <img src="../../../assets/images/login.png" alt="login" width="480" height="300" />
 
             <h2 class="text-center">LOGIN</h2>
 
-            <form (ngSubmit)="onLoginFormSubmit()">
-                <mat-form-field class="login-form-field" appearance="outline">
-                    <mat-label>User Name</mat-label>
-                    <input required matInput placeholder="eg. john_rics" />
+            <form class="form-container" (ngSubmit)="onLoginFormSubmit()">
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input
+                        required
+                        matInput
+                        name="username"
+                        [(ngModel)]="loginFormData.username"
+                        placeholder="eg. John"
+                    />
                 </mat-form-field>
 
-                <mat-form-field class="login-form-field" appearance="outline">
+                <mat-form-field class="form-field" appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input required matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password" />
-                    <button
-                        mat-icon-button
-                        matSuffix
-                        type="button"
-                        (click)="hide = !hide"
-                        [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide"
-                    >
-                        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+                    <input
+                        required
+                        matInput
+                        name="password"
+                        [(ngModel)]="loginFormData.password"
+                        [type]="hidePassword ? 'password' : 'text'"
+                        placeholder="Enter your password"
+                    />
+                    <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+                        <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
                     </button>
                 </mat-form-field>
 
                 <div class="button-group text-center">
-                    <button class="mr-20" type="submit" mat-raised-button color="primary">Login</button>
-                    <button type="reset" mat-raised-button>Clear</button>
+                    <button class="mr-10" type="submit" mat-raised-button color="primary">Sign Up</button>
+                    <button type="reset" mat-raised-button>Reset</button>
                 </div>
             </form>
         </mat-card-content>
+
+        <!-- {{ loginFormData | json }} -->
     </mat-card>
 </div>

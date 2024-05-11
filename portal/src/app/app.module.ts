@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
 
-import { UserService } from "./services/user.service";
+import { AuthService } from "./services/auth.service";
 
 import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
@@ -39,7 +39,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 
         HttpClientModule,
     ],
-    providers: [MatSnackBar, UserService, HttpClientModule],
+    providers: [MatSnackBar, AuthService, HttpClientModule],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
