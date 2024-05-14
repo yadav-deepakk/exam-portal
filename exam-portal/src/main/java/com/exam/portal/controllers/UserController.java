@@ -1,5 +1,6 @@
 package com.exam.portal.controllers;
 
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,23 +27,23 @@ import com.exam.portal.services.UserService;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "http://localhost:4200/", methods = {RequestMethod.GET})
+@CrossOrigin(origins = "http://localhost:4200/", methods = { RequestMethod.GET })
 public class UserController {
-
 	@Autowired
-	UserService userService;
+	private UserService userService;
 
-	Logger log = LoggerFactory.getLogger(UserController.class);
+	private Logger log = LoggerFactory.getLogger(UserController.class);
 
-	@GetMapping
-	public ResponseEntity<User> getUserByUsername(@RequestParam(name = "username", required = true) String username) {
-		log.info("GET: /user?" + ", username=" + username);
+	@GetMapping("current-user")
+	public ResponseEntity<User> getCurrentUser(Principal principal) {
+		log.info("GET:/user Principal Name {}" + principal.getName());
 		try {
-			User usr = userService.getUserByUsername(username);
+			User usr = userService.getUserByUsername(principal.getName());
 			if (usr != null) {
 				return new ResponseEntity<>(usr, HttpStatus.OK);
 			} else
-				throw new Exception("No user found with given username=" + username);
+				throw new Exception("No user found in DB");
+
 		} catch (Exception e) {
 			log.info("Exception Occured: {}", e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

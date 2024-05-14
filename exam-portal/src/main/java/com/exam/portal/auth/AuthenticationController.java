@@ -15,7 +15,7 @@ import com.exam.portal.models.SignUpRequest;
 
 @RestController
 @RequestMapping("api/auth")
-@CrossOrigin(origins = "http://localhost:4200/", methods = {RequestMethod.POST})
+@CrossOrigin(origins = "http://localhost:4200/", methods = { RequestMethod.POST })
 public class AuthenticationController {
 
 	@Autowired
