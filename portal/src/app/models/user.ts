@@ -4,7 +4,7 @@ export interface UserDetail {
     lastName: String | string;
     username: String | string;
     email: String | string;
-    password: String | string;
+    // password: String | string;
     profile: String | string;
     phone: String | string;
     isActive: boolean;
@@ -16,7 +16,7 @@ export interface UserDetail {
 }
 
 export interface Authority {
-    authority: String;
+    authority: string | String;
 }
 
 /*--------- SAMPLE USER JSON -------------

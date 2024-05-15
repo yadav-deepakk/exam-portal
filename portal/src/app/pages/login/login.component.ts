@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 import { JwtResponse } from "src/app/models/jwt-response";
 import { LogInRequest } from "src/app/models/login-req";
+import { UserRolesEnum } from "src/app/app.enum";
+import { UserDetail } from "src/app/models/user";
 import { AuthService } from "src/app/services/auth.service";
 import Swal from "sweetalert2";
 
@@ -17,7 +20,7 @@ export class LoginComponent implements OnInit {
         password: "",
     };
 
-    constructor(private snackBar: MatSnackBar, private authService: AuthService) {}
+    constructor(private snackBar: MatSnackBar, private authService: AuthService, private router: Router) {}
 
     ngOnInit(): void {}
 
@@ -29,15 +32,38 @@ export class LoginComponent implements OnInit {
         // submit form...
         console.log("login form submitted...");
         console.log(this.loginFormData);
+
         this.authService.logInUser(this.loginFormData).subscribe(
-            (data: JwtResponse) => {
-                console.log(data);
+            (userToken: JwtResponse) => {
+                console.log(userToken);
                 // this.snackBar.open("User logged in successfully.", "OK", { duration: 2000 });
                 Swal.fire({
                     title: "Success",
                     text: "User logged in successfully.",
                     icon: "success",
                 });
+
+                this.authService.saveJwt(userToken.jwt.valueOf());
+
+                // request for current user details from server
+                this.authService.getCurrentUser().subscribe(
+                    (user: UserDetail) => {
+                        console.log("user:" + user);
+                        if (user) this.authService.saveUser(user);
+                        // if ADMIN user:redirect to admin dashboard or redirect to user dashboard
+                        if (this.authService.checkUserHasRole(UserRolesEnum.ADMIN.toString())) {
+                            this.authService.loginStatusSubject.next(true);
+                            this.router.navigate(["admin"]);
+                        }
+                        if (this.authService.checkUserHasRole(UserRolesEnum.NORMAL.toString())) {
+                            this.authService.loginStatusSubject.next(true);
+                            this.router.navigate(["user-dashboard"]);
+                        }
+                    },
+                    (error: any) => {
+                        console.log("error in fetching current - user from server: " + error);
+                    }
+                );
             },
             (error: any) => {
                 console.log(error);

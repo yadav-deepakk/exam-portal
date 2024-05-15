@@ -4,6 +4,18 @@
         <h2>ExamPortal</h2>
     </a>
     <span class="spacer"></span>
-    <a mat-button routerLink="/signup" aria-label="Example icon-button with heart icon">Register</a>
-    <a mat-button routerLink="/login" aria-label="Example icon-button with share icon">Login</a>
+    <a *ngIf="!loggedIn" mat-button routerLink="/signup">Register</a>
+    <a *ngIf="!loggedIn" mat-button routerLink="/login">Login</a>
+
+    <div *ngIf="loggedIn">
+        <button mat-button [matMenuTriggerFor]="userOptions">
+            <mat-icon fontIcon="account_circle"></mat-icon>
+            {{ authService.getCurrentSavedUser()?.username }}
+        </button>
+        <mat-menu #userOptions="matMenu">
+            <button mat-menu-item>Option 1</button>
+            <button mat-menu-item>Option 2</button>
+            <button mat-menu-item (click)="logoutUser()">Logout</button>
+        </mat-menu>
+    </div>
 </mat-toolbar>
