@@ -1,0 +1,55 @@
+<mat-card *ngIf="user" class="mb-10">
+    <!-- {{ user | json }} -->
+    <h2 align="center" class="mt-20">Your Profile Details</h2>
+    <img src="../../../../assets/images/default.png" alt="" class="profile-image" />
+    <mat-card-content class="mt-10">
+        <mat-card-title class="text-center">
+            {{ user.firstName.toUpperCase() + " " + user.lastName.toUpperCase() }}
+        </mat-card-title>
+        <table border="1" align="center" class="mt-10">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Attribute</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>User ID</td>
+                    <td>EXAM00-{{ user.userId }}</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Username</td>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Email</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Phone</td>
+                    <td>{{ user.phone }}</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Role</td>
+                    <td>{{ user.authorities[0].authority }}</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Status</td>
+                    <td>{{ user.isActive ? "ACTIVE" : "DEACTIVATED" }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </mat-card-content>
+    <mat-card-actions class="mt-10 mb-10" align="end">
+        <button mat-raised-button class="mr-10" color="primary">Update</button>
+        <button mat-raised-button color="accent" class="mr-10">Share</button>
+    </mat-card-actions>
+</mat-card>

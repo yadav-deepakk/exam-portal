@@ -18,13 +18,18 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatMenuModule } from "@angular/material/menu";
+import { MatListModule } from "@angular/material/list";
+import { MatGridListModule } from "@angular/material/grid-list";
 
 import { HomeComponent } from "./pages/home/home.component";
 import { SignupComponent } from "./pages/signup/signup.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { UserDashboardComponent } from "./pages/user/user-dashboard/user-dashboard.component";
-import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { AdminDashboardComponent } from "./pages/admin/admin-dashboard/admin-dashboard.component";
+import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
+import { ProfileComponent } from './pages/admin/profile/profile.component';
+import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +40,9 @@ import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-das
         HomeComponent,
         AdminDashboardComponent,
         UserDashboardComponent,
+        SidebarComponent,
+        ProfileComponent,
+        WelcomeComponent,
     ],
     imports: [
         BrowserModule,
@@ -49,6 +57,8 @@ import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-das
         MatCardModule,
         MatToolbarModule,
         MatMenuModule,
+        MatListModule,
+        MatGridListModule,
 
         HttpClientModule,
     ],

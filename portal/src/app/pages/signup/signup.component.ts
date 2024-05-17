@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { AvailableRoutes } from "src/app/app.enum";
 import { JwtResponse } from "src/app/models/jwt-response";
 import { SignUpRequest } from "src/app/models/signup-req";
 import { AuthService } from "src/app/services/auth.service";
@@ -11,6 +12,7 @@ import Swal from "sweetalert2";
     styleUrls: ["./signup.component.css"],
 })
 export class SignupComponent implements OnInit {
+    public appRoutes = AvailableRoutes;
     public hidePassword = true;
 
     public signUpFormData: SignUpRequest = {

@@ -3,8 +3,8 @@ export enum AvailableRoutes {
     Home = "home",
     Login = "login",
     Signup = "signup",
-    UserDashboard = "user-dashboard",
     AdminDashboard = "admin",
+    UserDashboard = "user",
 }
 
 export enum UserRolesEnum {

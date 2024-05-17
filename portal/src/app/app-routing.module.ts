@@ -7,6 +7,8 @@ import { UserDashboardComponent } from "./pages/user/user-dashboard/user-dashboa
 import { AdminUserGuard, NormalUserGuard, NonLoggedInUserGuard } from "./services/user.guard.guard";
 import { AvailableRoutes } from "./app.enum";
 import { AdminDashboardComponent } from "./pages/admin/admin-dashboard/admin-dashboard.component";
+import { ProfileComponent } from "./pages/admin/profile/profile.component";
+import { WelcomeComponent } from "./pages/admin/welcome/welcome.component";
 
 const routes: Routes = [
     {
@@ -21,9 +23,12 @@ const routes: Routes = [
     },
     {
         path: AvailableRoutes.AdminDashboard,
-        pathMatch: "full",
         component: AdminDashboardComponent,
         canActivate: [AdminUserGuard],
+        children: [
+            { path: "", component: WelcomeComponent },
+            { path: "profile", component: ProfileComponent },
+        ],
     },
     {
         path: AvailableRoutes.UserDashboard,

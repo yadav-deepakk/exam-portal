@@ -1,0 +1,29 @@
+.profile-image {
+    align-self: center;
+    width: 250px;
+    height: 250px;
+}
+
+table {
+    width: 70%;
+    border-color: #333;
+    border-collapse: collapse;
+}
+
+thead {
+    color: #333;
+}
+
+tbody {
+    color: #444;
+}
+
+table tr {
+    align-items: center;
+    justify-content: center;
+}
+
+table td,
+table th {
+    padding: 10px;
+}

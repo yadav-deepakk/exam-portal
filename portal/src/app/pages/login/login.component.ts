@@ -3,7 +3,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { JwtResponse } from "src/app/models/jwt-response";
 import { LogInRequest } from "src/app/models/login-req";
-import { UserRolesEnum } from "src/app/app.enum";
+import { AvailableRoutes, UserRolesEnum } from "src/app/app.enum";
 import { UserDetail } from "src/app/models/user";
 import { AuthService } from "src/app/services/auth.service";
 import Swal from "sweetalert2";
@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
     styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
+    appRoutes = AvailableRoutes;
     public hidePassword: boolean = true;
     public loginFormData: LogInRequest = {
         username: "",
@@ -53,11 +54,11 @@ export class LoginComponent implements OnInit {
                         // if ADMIN user:redirect to admin dashboard or redirect to user dashboard
                         if (this.authService.checkUserHasRole(UserRolesEnum.ADMIN.toString())) {
                             this.authService.loginStatusSubject.next(true);
-                            this.router.navigate(["admin"]);
+                            this.router.navigate([AvailableRoutes.AdminDashboard]);
                         }
                         if (this.authService.checkUserHasRole(UserRolesEnum.NORMAL.toString())) {
                             this.authService.loginStatusSubject.next(true);
-                            this.router.navigate(["user-dashboard"]);
+                            this.router.navigate([AvailableRoutes.UserDashboard]);
                         }
                     },
                     (error: any) => {

@@ -1,0 +1,16 @@
+main {
+    display: flex;
+    gap: 12px;
+    flex-direction: row;
+
+}
+
+aside {
+    height: fit-content;
+    width: 20%;
+}
+
+section {
+    height: fit-content;
+    width: 80%;
+}

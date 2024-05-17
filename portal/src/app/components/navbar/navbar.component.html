@@ -1,11 +1,11 @@
 <mat-toolbar class="nav-bar" color="primary">
-    <a mat-button routerLink="/">
+    <a mat-button [routerLink]="appRoutes.Root">
         <mat-icon>auto_stories</mat-icon>
         <h2>ExamPortal</h2>
     </a>
     <span class="spacer"></span>
-    <a *ngIf="!loggedIn" mat-button routerLink="/signup">Register</a>
-    <a *ngIf="!loggedIn" mat-button routerLink="/login">Login</a>
+    <a *ngIf="!loggedIn" mat-button [routerLink]="appRoutes.Signup">Register</a>
+    <a *ngIf="!loggedIn" mat-button [routerLink]="appRoutes.Login">Login</a>
 
     <div *ngIf="loggedIn">
         <button mat-button [matMenuTriggerFor]="userOptions">
@@ -14,8 +14,8 @@
         </button>
         <mat-menu #userOptions="matMenu">
             <button mat-menu-item>Option 1</button>
-            <button mat-menu-item>Option 2</button>
-            <button mat-menu-item (click)="logoutUser()">Logout</button>
+            <button mat-menu-item (click)="navigateToDashBoard()">Dashboard</button>
+            <button mat-menu-item (click)="logoutUser()"><b>Logout</b></button>
         </mat-menu>
     </div>
 </mat-toolbar>
