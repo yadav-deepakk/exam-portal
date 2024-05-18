@@ -13,7 +13,7 @@
 	<artifactId>exam-portal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>exam-portal</name>
-	<description>Exam Portal Backend Services - Spring Boot Project </description>
+	<description>Exam Portal Backend Services - Spring Boot Project</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>

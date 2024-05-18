@@ -36,7 +36,7 @@ public class UserController {
 
 	@GetMapping("current-user")
 	public ResponseEntity<User> getCurrentUser(Principal principal) {
-		log.info("GET:/user Principal Name {}" + principal.getName());
+		log.info("GET:/user Principal Name {}", principal.getName());
 		try {
 			User usr = userService.getUserByUsername(principal.getName());
 			if (usr != null) {
