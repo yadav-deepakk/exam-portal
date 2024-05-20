@@ -36,18 +36,29 @@ public class ExamPortalApplication implements CommandLineRunner {
 		try {
 			log.info("Creation of an ADMIN User ...");
 
-			User u1 = User.builder().firstName("deepak").lastName("yadav").username("yadav_deepakk")
+			User adminUser = User.builder().firstName("deepak").lastName("yadav").username("yadav_deepakk")
 					.email("deepak@yadav.com").phone("+91 9911223344").password(passwordEncoder.encode("D999"))
 					.profile("default.png").isActive(true).build();
-			Role role1 = Role.builder().roleId(1).roleName("ADMIN").build(); // new Role(1, "ADMIN");
-			UserRole userRole = UserRole.builder().user(u1).role(role1).build();
-
-			Set<UserRole> userRoleSet = new HashSet<>();
-			userRoleSet.add(userRole);
-
-			userService.createUser(u1, userRoleSet);
+			Role adminRole = Role.builder().roleId(1).roleName("ADMIN").build(); // new Role(1, "ADMIN");
+			UserRole userRole = UserRole.builder().user(adminUser).role(adminRole).build();
+			Set<UserRole> adminUserRoleSet = new HashSet<>();
+			adminUserRoleSet.add(userRole);
+			userService.createUser(adminUser, adminUserRoleSet);
 
 			log.info("ADMIN User Creation Done ...");
+
+			log.info("Creation of a Normaml Test User ...");
+
+			User normalTestUser = User.builder().firstName("deep").lastName("y").username("ydeep")
+					.email("deep@email.com").phone("+91 9911223344").password(passwordEncoder.encode("test"))
+					.profile("default.png").isActive(true).build();
+			Role normalRole = Role.builder().roleId(2).roleName("NORMAL").build(); // new Role(1, "ADMIN");
+			UserRole normalUserRole = UserRole.builder().user(normalTestUser).role(normalRole).build();
+			Set<UserRole> normalUserRoleSet = new HashSet<>();
+			normalUserRoleSet.add(normalUserRole);
+			userService.createUser(normalTestUser, normalUserRoleSet);
+
+			log.info("NORMAL Test User Creation Done ...");
 
 		} catch (Exception e) {
 			log.info(e.getMessage());

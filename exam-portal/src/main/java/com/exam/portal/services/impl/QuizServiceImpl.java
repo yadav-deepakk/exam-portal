@@ -18,18 +18,9 @@ public class QuizServiceImpl implements QuizService {
 	@Autowired
 	private QuizRepo quizRepo;
 
-	private Logger log = LoggerFactory.getLogger(QuizServiceImpl.class);
-
 	@Override
-	public boolean addQuiz(Quiz quiz) {
-		try {
-			quizRepo.save(quiz);
-		} catch (Exception e) {
-			log.warn(e.getMessage());
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+	public Quiz addQuiz(Quiz quiz) {
+		return quizRepo.save(quiz);
 	}
 
 	@Override
@@ -38,29 +29,22 @@ public class QuizServiceImpl implements QuizService {
 	}
 
 	@Override
-	public Optional<List<Quiz>> getAllQuizzes() {
-		return Optional.of(quizRepo.findAll());
+	public List<Quiz> getAllQuizzes() {
+		return quizRepo.findAll();
 	}
 
 	@Override
-	public boolean updateQuiz(Quiz quiz) {
+	public Quiz updateQuiz(Quiz quiz) {
 		return this.addQuiz(quiz);
 	}
 
 	@Override
-	public boolean deleteQuizBy(Long quizId) {
-		try {
-			Optional<Quiz> quiz = quizRepo.findById(quizId);
-			if (quiz.isEmpty()) {
-				throw new Exception("No Quiz found with quizId:" + quizId + " to delete.");
-			}
-			log.warn("quiz:{} is being deleted!", quizId);
-			quizRepo.delete(quiz.get());
-		} catch (Exception e) {
-			log.warn(e.getMessage());
-			e.printStackTrace();
+	public boolean deleteQuizById(Long quizId) {
+		Optional<Quiz> quiz = quizRepo.findById(quizId);
+		if (quiz.isEmpty())
 			return false;
-		}
+
+		quizRepo.delete(quiz.get());
 		return true;
 	}
 

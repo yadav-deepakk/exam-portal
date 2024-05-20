@@ -6,13 +6,13 @@ import java.util.Optional;
 import com.exam.portal.entities.Quiz;
 
 public interface QuizService {
-	public boolean addQuiz(Quiz quiz);
+	public Quiz addQuiz(Quiz quiz);
 
 	public Optional<Quiz> getQuizById(Long quizId);
 
-	public Optional<List<Quiz>> getAllQuizzes();
+	public List<Quiz> getAllQuizzes();
 
-	public boolean updateQuiz(Quiz quiz);
+	public Quiz updateQuiz(Quiz quiz);
 
-	public boolean deleteQuizBy(Long quizId);
+	public boolean deleteQuizById(Long quizId);
 }

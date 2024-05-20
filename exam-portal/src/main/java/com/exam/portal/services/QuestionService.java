@@ -7,15 +7,15 @@ import com.exam.portal.entities.Question;
 import com.exam.portal.entities.Quiz;
 
 public interface QuestionService {
-	public boolean addQuestion(Question question);
+	public Question addQuestion(Question question);
 
 	public Optional<Question> getQuestionById(Long questionId);
 
-	public Optional<Set<Question>> getAllQuestions();
+	public Set<Question> getAllQuestions();
 
-	public boolean updateQuetion(Question question);
+	public Question updateQuestion(Question question);
 
 	public boolean deleteQuestionById(Long questionId);
-	
-	public Optional<Set<Question>> getQuestionsOfQuiz(Quiz quiz); 
+
+	public Set<Question> getQuestionsOfQuiz(Long quizId);
 }

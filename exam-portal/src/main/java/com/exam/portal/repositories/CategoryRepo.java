@@ -5,6 +5,5 @@ import org.springframework.stereotype.Repository;
 
 import com.exam.portal.entities.Category;
 
-public interface CategoryRepo extends JpaRepository<Category, Integer>{
-
+public interface CategoryRepo extends JpaRepository<Category, Integer> {
 }

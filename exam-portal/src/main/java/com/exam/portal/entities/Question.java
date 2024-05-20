@@ -1,7 +1,5 @@
 package com.exam.portal.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,25 +21,22 @@ import lombok.Setter;
 @Entity
 public class Question {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long questionId;
 
 	@Column(length = 5000, nullable = false)
 	private String questionContent;
-	
+
 	@Column(nullable = true)
 	private String image;
-	
+
 	private String option1;
 	private String option2;
 	private String option3;
 	private String option4;
-	
+
 	private String answer;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIgnore
-	@Builder.Default
-	private Quiz quiz = new Quiz();
-
+	@ManyToOne
+	private Quiz quiz;
 }

@@ -30,7 +30,7 @@ import lombok.ToString;
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer categoryId;
 
 	@Column(nullable = false, length = 1000)
@@ -39,7 +39,7 @@ public class Category {
 	@Column(length = 2500)
 	private String categoryDescription;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "category")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 	@JsonIgnore
 	@Builder.Default
 	private Set<Quiz> quizSet = new LinkedHashSet<>();

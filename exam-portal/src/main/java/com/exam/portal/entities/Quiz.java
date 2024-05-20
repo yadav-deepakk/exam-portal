@@ -29,7 +29,7 @@ import lombok.Setter;
 public class Quiz {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long quizId;
 
 	@Column(length = 1000)
@@ -40,18 +40,16 @@ public class Quiz {
 
 	private Integer quizMaxMarks;
 
-	private Integer quizQuestionsCount;
+	private Integer questionCount;
 
 	@Builder.Default
 	private Boolean isActiveQuiz = false;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "quiz")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
 	@JsonIgnore
 	@Builder.Default
 	private Set<Question> questionsSet = new HashSet<>();
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnore
-	@Builder.Default
-	private Category category = new Category();
+	@ManyToOne
+	private Category category;
 }
