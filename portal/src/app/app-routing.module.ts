@@ -9,6 +9,10 @@ import { AvailableRoutes } from "./app.enum";
 import { AdminDashboardComponent } from "./pages/admin/admin-dashboard/admin-dashboard.component";
 import { ProfileComponent } from "./pages/admin/profile/profile.component";
 import { WelcomeComponent } from "./pages/admin/welcome/welcome.component";
+import { ViewCategoriesComponent } from "./pages/admin/view-categories/view-categories.component";
+import { AddCategoryComponent } from "./pages/admin/add-category/add-category.component";
+import { QuizComponent } from "./pages/admin/quiz/quiz.component";
+import { AddQuizComponent } from "./pages/admin/add-quiz/add-quiz.component";
 
 const routes: Routes = [
     {
@@ -28,6 +32,10 @@ const routes: Routes = [
         children: [
             { path: "", component: WelcomeComponent },
             { path: "profile", component: ProfileComponent },
+            { path: "category", component: ViewCategoriesComponent },
+            { path: "add-category", component: AddCategoryComponent },
+            { path: "quiz", component: QuizComponent },
+            { path: "add-quiz", component: AddQuizComponent },
         ],
     },
     {

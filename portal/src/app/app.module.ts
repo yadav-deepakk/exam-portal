@@ -30,6 +30,10 @@ import { AdminDashboardComponent } from "./pages/admin/admin-dashboard/admin-das
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
+import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
+import { QuizComponent } from './pages/admin/quiz/quiz.component';
+import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
 
 @NgModule({
     declarations: [
@@ -43,6 +47,10 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
         SidebarComponent,
         ProfileComponent,
         WelcomeComponent,
+        ViewCategoriesComponent,
+        AddCategoryComponent,
+        QuizComponent,
+        AddQuizComponent,
     ],
     imports: [
         BrowserModule,
