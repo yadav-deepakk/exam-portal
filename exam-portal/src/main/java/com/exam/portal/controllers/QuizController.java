@@ -1,5 +1,6 @@
 package com.exam.portal.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,21 +22,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.exam.portal.entities.Quiz;
 import com.exam.portal.services.QuizService;
+import com.exam.portal.services.UserService;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/quiz")
-@CrossOrigin(origins = "http://localhost:4200/", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
+@CrossOrigin(origins = "http://localhost:4200/", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+		RequestMethod.DELETE })
 public class QuizController {
 
 	@Autowired
 	private QuizService quizService;
 
+	@Autowired
+	private UserService userService;
+
 	private Logger log = LoggerFactory.getLogger(QuizController.class);
 
 	@PostMapping
-	public ResponseEntity<Quiz> addQuiz(@Valid @RequestBody Quiz quiz) {
+	public ResponseEntity<Quiz> addQuiz(@Valid @RequestBody Quiz quiz, Principal principal) {
+		if (!userService.hasAdminRole(principal)) {
+			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+		}
 		log.info("POST: /quiz {}", quiz);
 		return ResponseEntity.ok(quizService.addQuiz(quiz));
 	}
@@ -53,13 +62,19 @@ public class QuizController {
 	}
 
 	@PutMapping
-	public ResponseEntity<Quiz> updateQuiz(@Valid @RequestBody Quiz quiz) {
+	public ResponseEntity<Quiz> updateQuiz(@Valid @RequestBody Quiz quiz, Principal principal) {
+		if (!userService.hasAdminRole(principal)) {
+			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+		}
 		log.info("PUT: /quiz/ {}", quiz);
 		return ResponseEntity.ok(quizService.updateQuiz(quiz));
 	}
 
 	@DeleteMapping("/{quizId}")
-	public ResponseEntity<Boolean> deleteQuiz(@PathVariable Long quizId) {
+	public ResponseEntity<Boolean> deleteQuiz(@PathVariable Long quizId, Principal principal) {
+		if (!userService.hasAdminRole(principal)) {
+			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+		}
 		log.info("DELETE: /quiz/{}", quizId);
 		return ResponseEntity.ok(quizService.deleteQuizById(quizId));
 	}

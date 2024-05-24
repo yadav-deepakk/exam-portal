@@ -1,5 +1,6 @@
 package com.exam.portal.controllers;
 
+import java.security.Principal;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -23,21 +24,29 @@ import com.exam.portal.entities.Question;
 import com.exam.portal.entities.Quiz;
 import com.exam.portal.repositories.QuestionRepo;
 import com.exam.portal.services.QuestionService;
+import com.exam.portal.services.UserService;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/question")
-@CrossOrigin(origins = "http://localhost:4200/", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
+@CrossOrigin(origins = "http://localhost:4200/", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+		RequestMethod.DELETE })
 public class QuestionController {
 
 	@Autowired
 	private QuestionService quesService;
 
+	@Autowired
+	private UserService userService;
+
 	private Logger log = LoggerFactory.getLogger(QuestionController.class);
 
 	@PostMapping
-	public ResponseEntity<Question> addQuestion(@Valid @RequestBody Question question) {
+	public ResponseEntity<Question> addQuestion(@Valid @RequestBody Question question, Principal principal) {
+		if (!userService.hasAdminRole(principal)) {
+			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+		}
 		log.info("POST: /question/ {}", question);
 		return ResponseEntity.ok(quesService.addQuestion(question));
 	}
@@ -61,13 +70,19 @@ public class QuestionController {
 	}
 
 	@PutMapping
-	public ResponseEntity<Question> updateQuestion(@Valid @RequestBody Question question) {
+	public ResponseEntity<Question> updateQuestion(@Valid @RequestBody Question question, Principal principal) {
+		if (!userService.hasAdminRole(principal)) {
+			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+		}
 		log.info("PUT: /question/ {}", question);
 		return ResponseEntity.ok(quesService.updateQuestion(question));
 	}
 
 	@DeleteMapping("/{questionId}")
-	public ResponseEntity<Boolean> deleteQuestionById(@PathVariable Long questionId) {
+	public ResponseEntity<Boolean> deleteQuestionById(@PathVariable Long questionId, Principal principal) {
+		if (!userService.hasAdminRole(principal)) {
+			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+		}
 		log.info("PUT: /question/ {}", questionId);
 		return ResponseEntity.ok(quesService.deleteQuestionById(questionId));
 	}

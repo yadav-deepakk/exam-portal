@@ -1,5 +1,6 @@
 package com.exam.portal.services.impl;
 
+import java.security.Principal;
 import java.util.Optional;
 import java.util.Set;
 
@@ -82,6 +83,20 @@ public class UserServiceImpl implements UserService {
 		} else {
 			log.info("User does not exist into database.");
 		}
+	}
+
+	@Override
+	public boolean hasAdminRole(Principal principal) {
+		String username = principal.getName(); 
+		User user = this.getUserByUsername(username); 
+		boolean isAdmin = false;
+		for (UserRole ur : user.getUserRoles()) {
+			if (ur.getRole().getRoleName().equalsIgnoreCase("ADMIN")) {
+				isAdmin = true;
+			}
+		}
+		return isAdmin;
+
 	}
 
 }
