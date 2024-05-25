@@ -9,6 +9,17 @@
                 <div matListItemTitle>{{ cat.categoryTitle }}</div>
                 <div matListItemLine>{{ cat.categoryDescription }}</div>
             </mat-list-item>
+            <a
+                mat-raised-button
+                color="accent"
+                class="ml-20 mr-10 mb-20"
+                [routerLink]="'/admin/category/' + cat.categoryId"
+            >
+                Update
+            </a>
+            <a mat-raised-button color="warn" class="mb-20" (click)="deleteCategory(cat.categoryId, cat.categoryTitle)"
+                >Delete
+            </a>
             <mat-divider></mat-divider>
         </mat-list>
     </mat-card-content>

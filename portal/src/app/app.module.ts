@@ -19,7 +19,8 @@ import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatListModule } from "@angular/material/list";
-import { MatGridListModule } from "@angular/material/grid-list";
+import { MatSelectModule } from "@angular/material/select";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 import { HomeComponent } from "./pages/home/home.component";
 import { SignupComponent } from "./pages/signup/signup.component";
@@ -27,13 +28,15 @@ import { LoginComponent } from "./pages/login/login.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { UserDashboardComponent } from "./pages/user/user-dashboard/user-dashboard.component";
 import { AdminDashboardComponent } from "./pages/admin/admin-dashboard/admin-dashboard.component";
-import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
-import { ProfileComponent } from './pages/admin/profile/profile.component';
-import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
-import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
-import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
-import { QuizComponent } from './pages/admin/quiz/quiz.component';
-import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
+import { SidebarComponent } from "./pages/admin/sidebar/sidebar.component";
+import { ProfileComponent } from "./pages/admin/profile/profile.component";
+import { WelcomeComponent } from "./pages/admin/welcome/welcome.component";
+import { ViewCategoriesComponent } from "./pages/admin/view-categories/view-categories.component";
+import { AddCategoryComponent } from "./pages/admin/add-category/add-category.component";
+import { QuizComponent } from "./pages/admin/quiz/quiz.component";
+import { AddQuizComponent } from "./pages/admin/add-quiz/add-quiz.component";
+import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component';
+import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component';
 
 @NgModule({
     declarations: [
@@ -51,6 +54,8 @@ import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
         AddCategoryComponent,
         QuizComponent,
         AddQuizComponent,
+        UpdateQuizComponent,
+        UpdateCategoryComponent,
     ],
     imports: [
         BrowserModule,
@@ -66,7 +71,8 @@ import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
         MatToolbarModule,
         MatMenuModule,
         MatListModule,
-        MatGridListModule,
+        MatSelectModule,
+        MatCheckboxModule,
 
         HttpClientModule,
     ],

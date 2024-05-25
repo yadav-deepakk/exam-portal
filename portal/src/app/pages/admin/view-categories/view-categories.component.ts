@@ -30,4 +30,46 @@ export class ViewCategoriesComponent implements OnInit {
             }
         );
     }
+
+    deleteCategory(id: Number | undefined, title: String | string | undefined): void {
+        if (!id) return;
+
+        Swal.fire({
+            title: "sure! do you want to delete " + title + "!",
+            text: "You wont be able to recover it.",
+            confirmButtonText: "Yes, Delete it",
+            showCancelButton: true,
+            cancelButtonText: "Cancel",
+        }).then((res) => {
+            if (res.isConfirmed) {
+                this.categService.deleteCategory(id).subscribe(
+                    (data: Boolean) => {
+                        console.log("Deletion data: " + data);
+                        if (data === true) {
+                            console.log("Deletion successful!");
+                            Swal.fire({
+                                icon: "success",
+                                titleText: "Category Delete",
+                                text: "Deletion Successful.",
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Category Delete",
+                                text: "Deletion Unsuccesful",
+                            });
+                        }
+                        this.ngOnInit();
+                    },
+                    (error) => {
+                        console.log(error);
+                        Swal.fire({
+                            icon: "error",
+                            text: "Something went wrong!",
+                        });
+                    }
+                );
+            }
+        });
+    }
 }

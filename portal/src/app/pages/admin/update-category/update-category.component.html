@@ -1,5 +1,8 @@
-<mat-card>
-    <form action="" (ngSubmit)="onAddCategoryFormSubmit()" class="text-center mb-10">
+<!-- {{ categoryIdRouteParam }}
+<p>update-category works!</p> -->
+
+<mat-card *ngIf="categoryData">
+    <form action="" (ngSubmit)="onUpdateCategoryFormSubmit()" class="text-center mb-10">
         <mat-card-header>
             <mat-card-title> Add a new category </mat-card-title>
         </mat-card-header>
@@ -9,7 +12,7 @@
                 <input
                     matInput
                     name="categoryTitle"
-                    [(ngModel)]="categoryFormData.categoryTitle"
+                    [(ngModel)]="categoryData.categoryTitle"
                     placeholder="Enter category title here"
                     required
                 />
@@ -20,15 +23,16 @@
                 <textarea
                     matInput
                     name="categoryDescription"
-                    [(ngModel)]="categoryFormData.categoryDescription"
+                    [(ngModel)]="categoryData.categoryDescription"
                     placeholder="Description (optional)"
                     rows="5"
                 ></textarea>
             </mat-form-field>
         </mat-card-content>
         <mat-card-footer>
-            <button mat-raised-button type="submit" color="primary">Submit</button>
+            <button mat-raised-button type="submit" color="accent">Update</button>
         </mat-card-footer>
     </form>
 </mat-card>
-<!-- {{ categoryFormData | json }} -->
+
+{{ categoryData | json }}

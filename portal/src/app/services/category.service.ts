@@ -15,7 +15,7 @@ export class CategoryService {
         return this.http.post<CategoryModel>(baseUrl, category);
     }
 
-    public getCategoryById(categoryId: number): Observable<CategoryModel> {
+    public getCategoryById(categoryId: Number): Observable<CategoryModel> {
         return this.http.get<CategoryModel>(`${baseUrl}/${categoryId}`);
     }
 
@@ -27,7 +27,7 @@ export class CategoryService {
         return this.http.put<CategoryModel>(baseUrl, categoryToBeUpdated);
     }
 
-    public deleteCategory(categoryId: number): Observable<Boolean> {
+    public deleteCategory(categoryId: Number): Observable<Boolean> {
         return this.http.delete<Boolean>(`${baseUrl}/${categoryId}`);
     }
 }

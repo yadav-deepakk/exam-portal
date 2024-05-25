@@ -22,6 +22,10 @@ body {
     flex-direction: column;
 }
 
+w100 {
+    width: 100%;
+}
+
 .ml-10 {
     margin-left: 10px;
 }
