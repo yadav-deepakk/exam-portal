@@ -51,6 +51,13 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
+	public Set<Question> getQuestionsOfQuizForAdmin(Long quizId) {
+		Quiz quiz = quizService.getQuizById(quizId).get();
+		List<Question> quesList = new ArrayList<Question>(quiz.getQuestionsSet());
+		return new HashSet<>(quesList);
+	}
+
+	@Override
 	public Set<Question> getQuestionsOfQuiz(Long quizId) {
 		Quiz quiz = quizService.getQuizById(quizId).get();
 		List<Question> quesList = new ArrayList<Question>(quiz.getQuestionsSet());

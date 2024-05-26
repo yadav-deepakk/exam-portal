@@ -63,6 +63,15 @@ public class QuestionController {
 		return ResponseEntity.ok(quesService.getQuestionById(questionId).get());
 	}
 
+	@GetMapping("/quiz/all/{quizId}")
+	public ResponseEntity<Set<Question>> getQuestionOfQuizForAdmin(@PathVariable Long quizId, Principal principal) {
+		log.info("GET: /question/{}", quizId);
+		if (!userService.hasAdminRole(principal)) {
+			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
+		}
+		return ResponseEntity.ok(quesService.getQuestionsOfQuizForAdmin(quizId));
+	}
+
 	@GetMapping("/quiz/{quizId}")
 	public ResponseEntity<Set<Question>> getQuestionOfQuiz(@PathVariable Long quizId) {
 		log.info("GET: /question/{}", quizId);
