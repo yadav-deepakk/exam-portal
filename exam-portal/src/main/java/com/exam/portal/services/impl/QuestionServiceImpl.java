@@ -51,16 +51,16 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Set<Question> getQuestionsOfQuizForAdmin(Long quizId) {
+	public List<Question> getQuestionsOfQuizForAdmin(Long quizId) {
 		Quiz quiz = quizService.getQuizById(quizId).get();
-		List<Question> quesList = new ArrayList<Question>(quiz.getQuestionsSet());
-		return new HashSet<>(quesList);
+		List<Question> quesList = new ArrayList<Question>(quiz.getQuestionsList());
+		return quesList;
 	}
 
 	@Override
 	public Set<Question> getQuestionsOfQuiz(Long quizId) {
 		Quiz quiz = quizService.getQuizById(quizId).get();
-		List<Question> quesList = new ArrayList<Question>(quiz.getQuestionsSet());
+		List<Question> quesList = new ArrayList<Question>(quiz.getQuestionsList());
 
 		if (quesList.size() < quiz.getQuestionCount()) { // quiz has insufficient question.
 			log.error("Quiz has insufficient question to form a Question Set");

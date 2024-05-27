@@ -1,5 +1,6 @@
 package com.exam.portal.services;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ public interface QuestionService {
 
 	public boolean deleteQuestionById(Long questionId);
 
-	public Set<Question> getQuestionsOfQuizForAdmin(Long quizId);
+	public List<Question> getQuestionsOfQuizForAdmin(Long quizId);
 
 	public Set<Question> getQuestionsOfQuiz(Long quizId);
 }

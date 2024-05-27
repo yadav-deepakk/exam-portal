@@ -1,6 +1,7 @@
 package com.exam.portal.entities;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -48,7 +49,7 @@ public class Quiz {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
 	@JsonIgnore
 	@Builder.Default
-	private Set<Question> questionsSet = new HashSet<>();
+	private List<Question> questionsList = new ArrayList<>();
 
 	@ManyToOne
 	private Category category;

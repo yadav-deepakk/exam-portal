@@ -1,6 +1,7 @@
 package com.exam.portal.controllers;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -44,10 +45,10 @@ public class QuestionController {
 
 	@PostMapping
 	public ResponseEntity<Question> addQuestion(@Valid @RequestBody Question question, Principal principal) {
+		log.info("POST: /question/ {}", question);
 		if (!userService.hasAdminRole(principal)) {
 			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
 		}
-		log.info("POST: /question/ {}", question);
 		return ResponseEntity.ok(quesService.addQuestion(question));
 	}
 
@@ -64,8 +65,8 @@ public class QuestionController {
 	}
 
 	@GetMapping("/quiz/all/{quizId}")
-	public ResponseEntity<Set<Question>> getQuestionOfQuizForAdmin(@PathVariable Long quizId, Principal principal) {
-		log.info("GET: /question/{}", quizId);
+	public ResponseEntity<List<Question>> getQuestionOfQuizForAdmin(@PathVariable Long quizId, Principal principal) {
+		log.info("GET: /question/quiz/all/{}", quizId);
 		if (!userService.hasAdminRole(principal)) {
 			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
 		}
@@ -74,25 +75,25 @@ public class QuestionController {
 
 	@GetMapping("/quiz/{quizId}")
 	public ResponseEntity<Set<Question>> getQuestionOfQuiz(@PathVariable Long quizId) {
-		log.info("GET: /question/{}", quizId);
+		log.info("GET: /question/quiz/{}", quizId);
 		return ResponseEntity.ok(quesService.getQuestionsOfQuiz(quizId));
 	}
 
 	@PutMapping
 	public ResponseEntity<Question> updateQuestion(@Valid @RequestBody Question question, Principal principal) {
+		log.info("PUT: /question/ {}", question);
 		if (!userService.hasAdminRole(principal)) {
 			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
 		}
-		log.info("PUT: /question/ {}", question);
 		return ResponseEntity.ok(quesService.updateQuestion(question));
 	}
 
 	@DeleteMapping("/{questionId}")
 	public ResponseEntity<Boolean> deleteQuestionById(@PathVariable Long questionId, Principal principal) {
+		log.info("PUT: /question/ {}", questionId);
 		if (!userService.hasAdminRole(principal)) {
 			return new ResponseEntity<>(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS);
 		}
-		log.info("PUT: /question/ {}", questionId);
 		return ResponseEntity.ok(quesService.deleteQuestionById(questionId));
 	}
 }
