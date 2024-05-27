@@ -21,6 +21,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatListModule } from "@angular/material/list";
 import { MatSelectModule } from "@angular/material/select";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 import { HomeComponent } from "./pages/home/home.component";
 import { SignupComponent } from "./pages/signup/signup.component";
@@ -35,8 +36,11 @@ import { ViewCategoriesComponent } from "./pages/admin/view-categories/view-cate
 import { AddCategoryComponent } from "./pages/admin/add-category/add-category.component";
 import { QuizComponent } from "./pages/admin/quiz/quiz.component";
 import { AddQuizComponent } from "./pages/admin/add-quiz/add-quiz.component";
-import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component';
-import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component';
+import { UpdateQuizComponent } from "./pages/admin/update-quiz/update-quiz.component";
+import { UpdateCategoryComponent } from "./pages/admin/update-category/update-category.component";
+import { QuizQuestionsComponent } from "./pages/admin/quiz-questions/quiz-questions.component";
+import { AddQuestionsComponent } from './pages/admin/add-questions/add-questions.component';
+import { EditQuestionsComponent } from './pages/admin/edit-questions/edit-questions.component';
 
 @NgModule({
     declarations: [
@@ -56,6 +60,9 @@ import { UpdateCategoryComponent } from './pages/admin/update-category/update-ca
         AddQuizComponent,
         UpdateQuizComponent,
         UpdateCategoryComponent,
+        QuizQuestionsComponent,
+        AddQuestionsComponent,
+        EditQuestionsComponent,
     ],
     imports: [
         BrowserModule,
@@ -73,6 +80,7 @@ import { UpdateCategoryComponent } from './pages/admin/update-category/update-ca
         MatListModule,
         MatSelectModule,
         MatCheckboxModule,
+        MatTooltipModule,
 
         HttpClientModule,
     ],

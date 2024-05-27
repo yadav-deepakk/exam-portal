@@ -1,0 +1,64 @@
+<div class="flex-box">
+    <h2>
+        Questions of <em> {{ quizTitleQueryParam?.valueOf() | uppercase }}</em> Quiz
+    </h2>
+    <button
+        mat-mini-fab
+        color="primary"
+        [matTooltip]="'Add a question in ' + quizTitleQueryParam + ' quiz'"
+        class="mr-20 mb-10"
+        [routerLink]="'/admin/add-question/quiz/' + quizIdQueryParam + '/' + quizTitleQueryParam"
+    >
+        <mat-icon>plus_one</mat-icon>
+    </button>
+</div>
+
+<div *ngIf="allQuestionsOfQuiz">
+    <mat-card class="mb-10" *ngFor="let ques of allQuestionsOfQuiz; let i = index">
+        <mat-card-header>
+            <div>
+                <b>Q{{ i + 1 }}.</b> {{ ques.questionContent.valueOf() | titlecase }}
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="grid-container">
+                <div class="grid-item">{{ ques.option1 }}</div>
+                <div class="grid-item">{{ ques.option2 }}</div>
+                <div class="grid-item">{{ ques.option3 }}</div>
+                <div class="grid-item">{{ ques.option4 }}</div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row mb-10 mt-10">
+                <span class="w50 ml-10"><b class="mr-10">ANSWER:</b>{{ ques.answer }}</span>
+            </div>
+            <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-actions class="ml-10">
+            <button
+                type="button"
+                mat-raised-button
+                color="accent"
+                [routerLink]="
+                    '/admin/update-question/quiz/' +
+                    quizIdQueryParam +
+                    '/' +
+                    quizTitleQueryParam +
+                    '/' +
+                    ques.questionId
+                "
+                class="mr-10"
+            >
+                Update
+            </button>
+            <button
+                type="button"
+                mat-raised-button
+                color="warn"
+                (click)="deleteQuestion(ques.questionId, ques.questionContent)"
+            >
+                Delete
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<!-- {{ allQuestionsOfQuiz | json }} -->

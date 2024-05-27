@@ -21,6 +21,15 @@
         <button
             type="button"
             mat-raised-button
+            color="primary"
+            class="mr-10"
+            [routerLink]="'/admin/questions/quiz/' + quiz.quizId + '/' + quiz.quizTitle"
+        >
+            Quesitons
+        </button>
+        <button
+            type="button"
+            mat-raised-button
             color="accent"
             class="mr-10"
             [routerLink]="'/admin/quiz/' + quiz.quizId"

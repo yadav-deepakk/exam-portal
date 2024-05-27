@@ -15,10 +15,10 @@ export class UpdateCategoryComponent implements OnInit {
     public categoryData: CategoryModel | null = null;
 
     constructor(
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
         private categService: CategoryService,
-        private snack: MatSnackBar
+        private activatedRoute: ActivatedRoute,
+        private snack: MatSnackBar,
+        private router: Router
     ) {}
 
     ngOnInit(): void {

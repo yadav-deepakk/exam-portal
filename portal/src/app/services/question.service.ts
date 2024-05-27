@@ -23,7 +23,11 @@ export class QuestionService {
         return this.http.get<QuestionModel>(`${baseURL}/${quesId}`);
     }
 
-    getQuestionByQuizId(quizId: BigInt): Observable<QuestionModel[]> {
+    getAllQuestionOfQuizForAdmin(quizId: BigInt): Observable<QuestionModel[]> {
+        return this.http.get<QuestionModel[]>(`${baseURL}/quiz/all/${quizId}`);
+    }
+
+    getQuestionOfQuizForTest(quizId: BigInt): Observable<QuestionModel[]> {
         return this.http.get<QuestionModel[]>(`${baseURL}/quiz/${quizId}`);
     }
 
