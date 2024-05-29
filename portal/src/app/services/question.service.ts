@@ -32,7 +32,7 @@ export class QuestionService {
     }
 
     updateQuestion(ques: QuestionModel): Observable<QuestionModel> {
-        return this.http.put<QuestionModel>(`${baseURL}/`, ques);
+        return this.http.put<QuestionModel>(`${baseURL}`, ques);
     }
 
     deleteQuestion(id: BigInt): Observable<Boolean> {

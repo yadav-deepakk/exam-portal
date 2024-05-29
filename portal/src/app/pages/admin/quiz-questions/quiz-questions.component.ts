@@ -37,8 +37,8 @@ export class QuizQuestionsComponent implements OnInit {
         }
     }
 
-    deleteQuestion(id: BigInt, content: string | String): void {
-        if (id) {
+    deleteQuestion(id: BigInt | undefined, content: string | String | undefined): void {
+        if (id && content) {
             Swal.fire({
                 icon: "info",
                 title: "Question Delete",
@@ -59,6 +59,12 @@ export class QuizQuestionsComponent implements OnInit {
                                     title: "Question Delete",
                                     text: "Question has been deleted successfully.",
                                 });
+                                console.log("filter out: " + id);
+                                this.allQuestionsOfQuiz = this.allQuestionsOfQuiz?.filter(
+                                    (ques) => ques.questionId !== id
+                                )!;
+                                console.log("After filter");
+                                console.table(this.allQuestionsOfQuiz);
                             } else {
                                 // display error (if any);
                                 Swal.fire({
@@ -79,7 +85,5 @@ export class QuizQuestionsComponent implements OnInit {
                 }
             });
         }
-
-        this.ngOnInit();
     }
 }

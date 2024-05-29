@@ -1,1 +1,47 @@
-<p>edit-questions works!</p>
+<mat-card *ngIf="quizIdQueryParam">
+    <mat-card-header>
+        <mat-card-title> update question of {{ quizTitleQueryParam }} quiz</mat-card-title>
+    </mat-card-header>
+    <form (ngSubmit)="updateQuestion()" class="text-center mt-10">
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="questionContent">Questioin Description</mat-label>
+            <textarea
+                name="questionContent"
+                matInput
+                [(ngModel)]="question.questionContent"
+                rows="5"
+                required
+            ></textarea>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="option1">Option 1</mat-label>
+            <input name="option1" matInput [(ngModel)]="question.option1" required />
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="option2">Option 2</mat-label>
+            <input name="option2" matInput [(ngModel)]="question.option2" required />
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="option3">Option 3</mat-label>
+            <input name="option3" matInput [(ngModel)]="question.option3" required />
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="option4">Option 4</mat-label>
+            <input name="option4" matInput [(ngModel)]="question.option4" required />
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="fill">
+            <mat-label for="answer">Answer</mat-label>
+            <mat-select name="answer" placeholder="choose correct answer" [(ngModel)]="question.answer" required>
+                <mat-option [value]="question.option1" *ngIf="question.option1">{{ question.option1 }}</mat-option>
+                <mat-option [value]="question.option2" *ngIf="question.option2">{{ question.option2 }}</mat-option>
+                <mat-option [value]="question.option3" *ngIf="question.option3">{{ question.option3 }}</mat-option>
+                <mat-option [value]="question.option4" *ngIf="question.option4">{{ question.option4 }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="text-center mb-10">
+            <button type="submit" mat-raised-button color="primary" class="mr-10">Save</button>
+            <button type="reset" mat-raised-button color="accent">Reset</button>
+        </div>
+    </form>
+</mat-card>

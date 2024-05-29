@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { CategoryModel } from "src/app/models/category";
 import { QuizModel } from "src/app/models/quiz";
 import { CategoryService } from "src/app/services/category.service";
 import { QuizService } from "src/app/services/quiz.service";
@@ -51,14 +49,16 @@ export class QuizComponent implements OnInit {
                         console.log("deleted: " + data);
                         Swal.fire({
                             icon: "success",
+                            title: "Quiz Delete",
                             text: "Deletion successful.",
                         });
-                        this.ngOnInit();
+                        this.quizzes = this.quizzes?.filter((quiz) => quiz.quizId !== quizId)!;
                     },
                     (error: any) => {
                         console.log("error in deletion: " + error);
                         Swal.fire({
                             icon: "error",
+                            title: "Quiz Delete",
                             text: "Some problem occured in deletion.",
                         });
                     }

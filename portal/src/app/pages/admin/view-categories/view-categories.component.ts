@@ -56,15 +56,16 @@ export class ViewCategoriesComponent implements OnInit {
                             Swal.fire({
                                 icon: "error",
                                 title: "Category Delete",
-                                text: "Deletion Unsuccesful",
+                                text: "Category Deletion Unsuccesful",
                             });
                         }
-                        this.ngOnInit();
+                        this.categories = this.categories?.filter((category) => category.categoryId !== id)!;
                     },
                     (error) => {
                         console.log(error);
                         Swal.fire({
                             icon: "error",
+                            title: "Category Delete",
                             text: "Something went wrong!",
                         });
                     }
