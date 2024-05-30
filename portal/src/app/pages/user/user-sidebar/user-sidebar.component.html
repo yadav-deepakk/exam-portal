@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-action-list>
+        <div mat-subheader>Menu</div>
+        <a mat-list-item [routerLink]="'/user/quizzes/0'"> <mat-icon matListItemIcon>home</mat-icon>Home</a>
+        <div *ngFor="let category of categories">
+            <a mat-list-item [routerLink]="'/user/quizzes/' + category.categoryId">
+                <mat-icon matListItemIcon>category</mat-icon>
+                {{ category.categoryTitle }}
+            </a>
+        </div>
+    </mat-action-list>
+</mat-card>

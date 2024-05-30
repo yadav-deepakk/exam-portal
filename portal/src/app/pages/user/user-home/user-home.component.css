@@ -1,0 +1,17 @@
+.grid-container {
+    margin-right: 4px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 8px;
+}
+
+.grid-item {
+    height: fit-content;
+}
+
+.card-quiz-avatar {
+    background-image: url("../../../../assets/quiz-logo.png");
+    background-position: center;
+    background-size: contain;
+}

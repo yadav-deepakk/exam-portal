@@ -1,0 +1,31 @@
+<!-- <p>user-home works</p>
+{{ categoryIdQueryParam ?? "undefined" }} -->
+
+<mat-card class="mb-10">
+    <mat-card-header class="mb-10">
+        <mat-card-title> Available Quizzes </mat-card-title>
+    </mat-card-header>
+</mat-card>
+
+<div class="grid-container" *ngIf="quizzesToDisplay.length > 0">
+    <mat-card class="grid-item" *ngFor="let quiz of quizzesToDisplay">
+        <mat-card-header>
+            <div mat-card-avatar class="card-quiz-avatar"></div>
+            <mat-card-title>{{ quiz.quizTitle }}</mat-card-title>
+            <mat-card-subtitle>{{ quiz.category.categoryTitle }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ quiz.quizDescription }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="accent">View</button>
+            <button mat-flat-button class="ml-10 mr-10" color="primary">Attempt</button>
+            <button mat-button color="warn">Ques:{{ quiz.questionCount }}</button>
+            <button mat-button color="warn">Marks:{{ quiz.quizMaxMarks }}</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<div class="text-center" *ngIf="quizzesToDisplay.length == 0">
+    <h3><em>No Quizzes to display</em></h3>
+</div>
