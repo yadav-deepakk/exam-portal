@@ -41,6 +41,9 @@ import { UpdateCategoryComponent } from "./pages/admin/update-category/update-ca
 import { QuizQuestionsComponent } from "./pages/admin/quiz-questions/quiz-questions.component";
 import { AddQuestionsComponent } from './pages/admin/add-questions/add-questions.component';
 import { EditQuestionsComponent } from './pages/admin/edit-questions/edit-questions.component';
+import { UserSidebarComponent } from './pages/user/user-sidebar/user-sidebar.component';
+import { UserHomeComponent } from './pages/user/user-home/user-home.component';
+import { UserWelcomeComponent } from './pages/user/user-welcome/user-welcome.component';
 
 @NgModule({
     declarations: [
@@ -63,6 +66,9 @@ import { EditQuestionsComponent } from './pages/admin/edit-questions/edit-questi
         QuizQuestionsComponent,
         AddQuestionsComponent,
         EditQuestionsComponent,
+        UserSidebarComponent,
+        UserHomeComponent,
+        UserWelcomeComponent,
     ],
     imports: [
         BrowserModule,

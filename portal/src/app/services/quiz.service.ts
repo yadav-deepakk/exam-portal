@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { QuizModel } from "../models/quiz";
 
-const baseURL: String|string = "http://localhost:8080/quiz";
+const baseURL: String | string = "http://localhost:8080/quiz";
 
 @Injectable({
     providedIn: "root",

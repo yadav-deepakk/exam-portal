@@ -26,7 +26,7 @@ export class AddCategoryComponent implements OnInit {
             return;
         }
 
-        this.categService.postCategry(this.categoryFormData).subscribe(
+        this.categService.postCategory(this.categoryFormData).subscribe(
             (data: CategoryModel) => {
                 console.log("data recieved: " + data);
                 Swal.fire({

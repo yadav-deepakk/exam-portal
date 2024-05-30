@@ -18,6 +18,8 @@ import { UpdateCategoryComponent } from "./pages/admin/update-category/update-ca
 import { QuizQuestionsComponent } from "./pages/admin/quiz-questions/quiz-questions.component";
 import { EditQuestionsComponent } from "./pages/admin/edit-questions/edit-questions.component";
 import { AddQuestionsComponent } from "./pages/admin/add-questions/add-questions.component";
+import { UserHomeComponent } from "./pages/user/user-home/user-home.component";
+import { UserWelcomeComponent } from "./pages/user/user-welcome/user-welcome.component";
 
 const routes: Routes = [
     {
@@ -50,9 +52,12 @@ const routes: Routes = [
     },
     {
         path: AvailableRoutes.UserDashboard,
-        pathMatch: "full",
         component: UserDashboardComponent,
         canActivate: [NormalUserGuard],
+        children: [
+            { path: "", component: UserWelcomeComponent },
+            { path: "quizzes/:categoryId", component: UserHomeComponent },
+        ],
     },
     {
         path: AvailableRoutes.Signup,
