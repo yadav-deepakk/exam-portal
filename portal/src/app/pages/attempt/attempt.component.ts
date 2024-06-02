@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { QuestionModel } from "src/app/models/question";
 import { QuestionService } from "src/app/services/question.service";
 import { LocationStrategy } from "@angular/common";
@@ -30,6 +30,7 @@ export class AttemptComponent implements OnInit {
     attempted: Number = 0;
 
     constructor(
+        private router: Router,
         private activatedRoute: ActivatedRoute,
         private locationSt: LocationStrategy,
         private questionService: QuestionService
@@ -40,12 +41,24 @@ export class AttemptComponent implements OnInit {
         this.questionService.getQuestionOfQuizForTest(this.quizIdPathVar!).subscribe(
             (data: QuestionModel[]) => {
                 console.log(data);
+                if (data == null || data == undefined || data.length == 0) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Unable to start Quiz!",
+                        text: "Contact to ADMIN, either quiz is inactive or has insuffcient question to form a test.",
+                    });
+                    this.router.navigate(["/user/"]);
+                    return;
+                }
                 this.allQuizQuestions = data;
                 this.quizTitle = this.allQuizQuestions[0].quiz?.quizTitle;
                 this.quizMaxMarks = this.allQuizQuestions[0].quiz?.quizMaxMarks ?? 1;
 
                 // giving 2 min to each question to solve.
                 this.totalRemainingTime = this.allQuizQuestions!.length * 2 * 60; // in sec;
+
+                this.preventBackButton();
+                this.startTimer();
             },
             (error: any) => {
                 console.log(error);
@@ -56,8 +69,6 @@ export class AttemptComponent implements OnInit {
                 });
             }
         );
-        this.preventBackButton();
-        this.startTimer();
     }
 
     @HostListener("contextmenu", ["$event"])
