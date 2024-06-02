@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from "ngx-ui-loader";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
@@ -39,13 +40,13 @@ import { AddQuizComponent } from "./pages/admin/add-quiz/add-quiz.component";
 import { UpdateQuizComponent } from "./pages/admin/update-quiz/update-quiz.component";
 import { UpdateCategoryComponent } from "./pages/admin/update-category/update-category.component";
 import { QuizQuestionsComponent } from "./pages/admin/quiz-questions/quiz-questions.component";
-import { AddQuestionsComponent } from './pages/admin/add-questions/add-questions.component';
-import { EditQuestionsComponent } from './pages/admin/edit-questions/edit-questions.component';
-import { UserSidebarComponent } from './pages/user/user-sidebar/user-sidebar.component';
-import { UserHomeComponent } from './pages/user/user-home/user-home.component';
-import { UserWelcomeComponent } from './pages/user/user-welcome/user-welcome.component';
-import { InstructionsComponent } from './pages/user/instructions/instructions.component';
-import { AttemptComponent } from './pages/attempt/attempt.component';
+import { AddQuestionsComponent } from "./pages/admin/add-questions/add-questions.component";
+import { EditQuestionsComponent } from "./pages/admin/edit-questions/edit-questions.component";
+import { UserSidebarComponent } from "./pages/user/user-sidebar/user-sidebar.component";
+import { UserHomeComponent } from "./pages/user/user-home/user-home.component";
+import { UserWelcomeComponent } from "./pages/user/user-welcome/user-welcome.component";
+import { InstructionsComponent } from "./pages/user/instructions/instructions.component";
+import { AttemptComponent } from "./pages/attempt/attempt.component";
 
 @NgModule({
     declarations: [
@@ -93,6 +94,10 @@ import { AttemptComponent } from './pages/attempt/attempt.component';
         MatTooltipModule,
 
         HttpClientModule,
+        NgxUiLoaderModule,
+        NgxUiLoaderHttpModule.forRoot({
+            showForeground: true,
+        }),
     ],
     providers: [
         AuthService,
