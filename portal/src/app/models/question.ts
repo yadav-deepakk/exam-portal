@@ -9,5 +9,6 @@ export interface QuestionModel {
     option3?: String | string;
     option4?: String | string;
     answer?: String | string;
+    givenAnswer?: String | string;
     quiz?: QuizModel;
 }

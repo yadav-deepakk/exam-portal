@@ -5,6 +5,7 @@ export enum AvailableRoutes {
     Signup = "signup",
     AdminDashboard = "admin",
     UserDashboard = "user",
+    StartQuiz = "start",
 }
 
 export enum UserRolesEnum {

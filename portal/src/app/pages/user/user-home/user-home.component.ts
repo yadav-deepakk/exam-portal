@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { map, Observable, of } from "rxjs";
 import { QuizModel } from "src/app/models/quiz";
 import { QuizService } from "src/app/services/quiz.service";
 import Swal from "sweetalert2";

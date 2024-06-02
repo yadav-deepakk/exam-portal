@@ -44,6 +44,8 @@ import { EditQuestionsComponent } from './pages/admin/edit-questions/edit-questi
 import { UserSidebarComponent } from './pages/user/user-sidebar/user-sidebar.component';
 import { UserHomeComponent } from './pages/user/user-home/user-home.component';
 import { UserWelcomeComponent } from './pages/user/user-welcome/user-welcome.component';
+import { InstructionsComponent } from './pages/user/instructions/instructions.component';
+import { AttemptComponent } from './pages/attempt/attempt.component';
 
 @NgModule({
     declarations: [
@@ -69,6 +71,8 @@ import { UserWelcomeComponent } from './pages/user/user-welcome/user-welcome.com
         UserSidebarComponent,
         UserHomeComponent,
         UserWelcomeComponent,
+        InstructionsComponent,
+        AttemptComponent,
     ],
     imports: [
         BrowserModule,
