@@ -2,6 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { QuizModel } from "../models/quiz";
+import { QuizResultModel } from "../models/quizResult";
+import { QuestionModel } from "../models/question";
 
 const baseURL: String | string = "http://localhost:8080/quiz";
 
@@ -29,5 +31,9 @@ export class QuizService {
 
     public deleteQuizById(id: BigInt): Observable<Boolean> {
         return this.http.delete<Boolean>(`${baseURL}/${id}`);
+    }
+
+    public evaluateQuizResult(quesList: QuestionModel[]): Observable<QuizResultModel> {
+        return this.http.post(`${baseURL}/eval-quiz`, quesList);
     }
 }

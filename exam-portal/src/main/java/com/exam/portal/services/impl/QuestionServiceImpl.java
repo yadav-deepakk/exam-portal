@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.exam.portal.entities.Question;
 import com.exam.portal.entities.Quiz;
+import com.exam.portal.models.QuizResult;
 import com.exam.portal.repositories.QuestionRepo;
 import com.exam.portal.services.QuestionService;
 import com.exam.portal.services.QuizService;
@@ -67,6 +68,9 @@ public class QuestionServiceImpl implements QuestionService {
 			return null;
 		}
 
+		for (Question ques : quesList) // insuring that answer is not being sent to client.
+			ques.setAnswer("");
+
 		Collections.shuffle(quesList);
 		if (quesList.size() > quiz.getQuestionCount()) {
 			quesList = quesList.subList(0, quiz.getQuestionCount());
@@ -84,4 +88,31 @@ public class QuestionServiceImpl implements QuestionService {
 		questionRepo.delete(question.get());
 		return true;
 	}
+
+	@Override
+	public QuizResult evaluateQuizResult(List<Question> quesList) {
+		int attemptedCount = quesList.size(), correctAns = 0;
+		float res = 0.0f;
+		for (Question clientQues : quesList) {
+			if (clientQues.getGivenAnswer() == null || clientQues.getGivenAnswer().trim() == "") {
+				attemptedCount--;
+				continue;
+			}
+			Question serverQues = this.getQuestionById(clientQues.getQuestionId()).get();
+			if (clientQues.getGivenAnswer().equals(serverQues.getAnswer())) {
+				correctAns++;
+			}
+		}
+
+		res = ((float) correctAns / quesList.size()) * 100;
+
+		return QuizResult
+				.builder()
+				.totalQuestionCount(quesList.size())
+				.attemptedQuestionCount(attemptedCount)
+				.correctAnswerCount(correctAns)
+				.score(res)
+				.build();
+	}
+
 }

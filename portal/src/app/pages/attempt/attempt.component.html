@@ -6,9 +6,12 @@
             <mat-card-title> Quiz Result </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <h3>Total Questions : {{ allQuizQuestions?.length }}</h3>
+            <!-- <h3>Total Questions : {{ allQuizQuestions?.length }}</h3>
             <h3>Attempted Questions : {{ attempted }}</h3>
-            <h3>Score : {{ quizScore }} %</h3>
+            <h3>Score : {{ quizScore }} %</h3> -->
+            <h3>Total Questions : {{ quizResult?.totalQuestionCount }}</h3>
+            <h3>Attempted Questions : {{ quizResult?.attemptedQuestionCount }}</h3>
+            <h3>Score : {{ quizResult?.score }} %</h3>
         </mat-card-content>
     </mat-card>
 

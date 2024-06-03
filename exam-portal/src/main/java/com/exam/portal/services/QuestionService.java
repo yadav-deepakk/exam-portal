@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.exam.portal.entities.Question;
 import com.exam.portal.entities.Quiz;
+import com.exam.portal.models.QuizResult;
 
 public interface QuestionService {
 	public Question addQuestion(Question question);
@@ -21,4 +22,6 @@ public interface QuestionService {
 	public List<Question> getQuestionsOfQuizForAdmin(Long quizId);
 
 	public Set<Question> getQuestionsOfQuiz(Long quizId);
+
+	public QuizResult evaluateQuizResult(List<Question> questions);
 }

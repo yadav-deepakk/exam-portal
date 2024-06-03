@@ -5,6 +5,8 @@ import { QuestionService } from "src/app/services/question.service";
 import { LocationStrategy } from "@angular/common";
 
 import Swal from "sweetalert2";
+import { QuizService } from "src/app/services/quiz.service";
+import { QuizResultModel } from "src/app/models/quizResult";
 
 @Component({
     selector: "app-attempt",
@@ -28,11 +30,13 @@ export class AttemptComponent implements OnInit {
     isQuizSubmitted: Boolean = false;
     quizScore: Number = 0.0;
     attempted: Number = 0;
+    quizResult: QuizResultModel | null = null;
 
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private locationSt: LocationStrategy,
+        private quizService: QuizService,
         private questionService: QuestionService
     ) {}
 
@@ -99,8 +103,39 @@ export class AttemptComponent implements OnInit {
             denyButtonText: "NO",
         }).then((res) => {
             // evaluate results
-            if (res.isConfirmed) this.evaluateQuizResult(false);
+            if (res.isConfirmed) {
+                // this.evaluateQuizResult(false);
+                this.evaluateQuizResultAtBackEnd(false);
+            }
         });
+    }
+
+    evaluateQuizResultAtBackEnd(timerEnded: boolean): void {
+        Swal.fire({
+            icon: timerEnded ? "warning" : "success",
+            title: "Quiz Submitted!",
+            text: timerEnded ? "Times Up!" : "Thank you for taking up the Quiz",
+        });
+
+        console.log(this.allQuizQuestions);
+
+        this.quizService.evaluateQuizResult(this.allQuizQuestions!).subscribe(
+            (data: QuizResultModel) => {
+                console.log(data);
+                this.quizResult = data;
+                this.isQuizSubmitted = true;
+            },
+            (error: any) => {
+                console.log(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Quiz Evaluation!",
+                    text: "Error received in quiz evaluation.",
+                }).then(() => {
+                    this.router.navigate(["/user"]);
+                });
+            }
+        );
     }
 
     evaluateQuizResult(timerEnded: boolean): void {
@@ -136,7 +171,8 @@ export class AttemptComponent implements OnInit {
             this.ss = this.totalRemainingTime % 60;
             if (this.totalRemainingTime <= 0) {
                 window.clearInterval(this.timer);
-                this.evaluateQuizResult(true);
+                // this.evaluateQuizResult(true);
+                this.evaluateQuizResultAtBackEnd(false);
             }
         }, 1000);
     }

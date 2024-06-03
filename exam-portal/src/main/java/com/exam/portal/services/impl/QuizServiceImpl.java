@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.exam.portal.entities.Question;
 import com.exam.portal.entities.Quiz;
+import com.exam.portal.models.QuizResult;
 import com.exam.portal.repositories.QuizRepo;
 import com.exam.portal.services.QuizService;
 
@@ -17,6 +19,7 @@ public class QuizServiceImpl implements QuizService {
 
 	@Autowired
 	private QuizRepo quizRepo;
+
 
 	@Override
 	public Quiz addQuiz(Quiz quiz) {

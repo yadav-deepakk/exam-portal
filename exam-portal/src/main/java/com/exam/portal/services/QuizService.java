@@ -15,4 +15,5 @@ public interface QuizService {
 	public Quiz updateQuiz(Quiz quiz);
 
 	public boolean deleteQuizById(Long quizId);
+
 }

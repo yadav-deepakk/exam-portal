@@ -20,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exam.portal.entities.Question;
 import com.exam.portal.entities.Quiz;
+import com.exam.portal.models.QuizResult;
 import com.exam.portal.services.QuizService;
 import com.exam.portal.services.UserService;
+import com.exam.portal.services.impl.QuestionServiceImpl;
 
 import jakarta.validation.Valid;
 
@@ -34,6 +37,9 @@ public class QuizController {
 
 	@Autowired
 	private QuizService quizService;
+	
+	@Autowired
+	private QuestionServiceImpl questionService; 
 
 	@Autowired
 	private UserService userService;
@@ -47,6 +53,11 @@ public class QuizController {
 		}
 		log.info("POST: /quiz {}", quiz);
 		return ResponseEntity.ok(quizService.addQuiz(quiz));
+	}
+	
+	@PostMapping("/eval-quiz")
+	public ResponseEntity<QuizResult> evaluteQuizResult(@RequestBody List<Question> quesList) {
+		return ResponseEntity.ok(questionService.evaluateQuizResult(quesList)); 
 	}
 
 	@GetMapping
